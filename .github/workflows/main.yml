@@ -8,7 +8,7 @@ on:
       - 'main'
 
 env: # тег, под которым будет храниться временный образ-кеш
-  TEST_TAG: hexletcomponents/devops-example-app:test
+  TEST_TAG: lildrughill/devops-example-app:test
 
 jobs:
   docker:
@@ -47,7 +47,8 @@ jobs:
         with:
           context: .
           push: true
-          tags: hexletcomponents/devops-example-app:latest
+          tags: lildrughill/devops-example-app:latest
+      # Добавляем сразу после сборки app
       - name: Build and push caddy
         uses: docker/build-push-action@v2
         with:
@@ -55,4 +56,4 @@ jobs:
           file: services/caddy/Dockerfile
           push: true
           # Не забудьте создать репозиторий в Docker Hub
-          tags: hexletcomponents/devops-example-caddy:latest
+          tags: lildrughill/devops-example-caddy:latest

@@ -6,7 +6,7 @@ on:
       - v* # только теги начинающиеся с v: v1, v2, v5
 
 env:
-  APP_IMAGE_NAME: hexletcomponents/devops-example-app
+  APP_IMAGE_NAME: lildrughill/devops-example-app
 
 jobs:
   docker:
@@ -25,3 +25,7 @@ jobs:
 
       # Заливаем новый тег
       - run: docker push ${{ env.APP_IMAGE_NAME }}:${{ github.ref_name }}
+      # Добавляем сразу после сборки app
+      - run: docker pull lildrughill/devops-example-caddy:latest
+      - run: docker tag lildrughill/devops-example-caddy:latest lildrughill/devops-example-caddy:${{ github.ref_name }}
+      - run: docker push lildrughill/devops-example-caddy:${{ github.ref_name }}
