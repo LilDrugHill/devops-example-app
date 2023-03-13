@@ -52,7 +52,7 @@ reverse_proxy {
 
 handle {
     # Добавляем столько серверов, сколько нужно
-    reverse_proxy app1:3000 app2:3000
+    reverse_proxy app:3000
 }
 
 # Nginx

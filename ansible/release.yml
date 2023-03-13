@@ -1,5 +1,9 @@
 - hosts: all
   tasks:
+    - command:
+        argv: sudo apt update
+      become: yes
+
     - apt:
         name: python3-pip
         update_cache: yes
