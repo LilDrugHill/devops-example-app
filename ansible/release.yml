@@ -12,7 +12,7 @@
         name: app
         # Обязательно указываем тег, который хотим деплоить
         # Если образа на сервере нет, Ansible его автоматически скачает
-        image: "hexletcomponents/devops-example-app:{{ version }}"
+        image: "lildrughill/devops-example-app:{{ version }}"
         # Подключаем супервизор
         # Если контейнер остановится, например, из-за ошибок
         # супервизор Docker его перезапустит

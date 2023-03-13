@@ -26,3 +26,47 @@ localhost, devops-example.test {
         format json
     }
 }
+# Для вывода сообщения во время обновления или падения сервера
+# Caddy
+reverse_proxy {
+  to app:3000
+
+  @error status 502 # Только 502 ошибки
+  handle_response @error {
+    # Путь по которому хранятся html-файлы для разных ошибок
+    root * /app/services/caddy/error_pages
+    # Для всех 502 запросов отдаем файл 502.html
+    # Имя произвольное
+    rewrite * /502.html
+    file_server
+  }
+}
+
+# Nginx
+# Имя файла произвольное
+# error_page 502 /502.html;
+# location = /502.html {
+#   root /path/to/files/with/html;
+#   internal;
+# }
+
+handle {
+    # Добавляем столько серверов, сколько нужно
+    reverse_proxy app1:3000 app2:3000
+}
+
+# Nginx
+# http {
+#     server {
+#         location / {
+        # Запрос перенаправляется на upstream backend
+#             proxy_pass http://backend;
+#         }
+#     }
+#     upstream backend {
+    # Добавляем столько серверов, сколько нужно
+#         server app1;
+#         server app2;
+#         server app3;
+#     }
+# }
