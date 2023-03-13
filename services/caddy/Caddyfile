@@ -50,10 +50,10 @@ reverse_proxy {
 #   internal;
 # }
 
-handle {
-    # Добавляем столько серверов, сколько нужно
-    reverse_proxy app:3000
-}
+# handle {
+#     # Добавляем столько серверов, сколько нужно
+#     reverse_proxy app:3000
+# }
 
 # Nginx
 # http {
