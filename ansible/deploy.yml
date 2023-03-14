@@ -14,7 +14,7 @@
         networks: # Добавляем контейнер в сеть
           - name: devops-example
         ports: # Больше не нужно выставлять наружу, потому что доступ идет через Caddy
-          # - 3000:3000
+          - 3000:3000
         env:
           NODE_ENV: production
 
